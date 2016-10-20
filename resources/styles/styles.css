@@ -1,9 +1,40 @@
 h1{
 color:blue;
 }
-
+#reviewParent{
+  overflow: hidden;
+}
 #reviews{
-  overflow: auto;
-  height: 20vh;
-  width: 20vh;
+  overflow: scroll;
+  height: 30vh;
+  width: 30vh;
+  border-style: double;
+  padding: 3px 15px 3px 15px;
+  word-wrap: normal;
+  border-radius: 50%;
+  text-align: center;
+
+}
+
+.add-review{
+  margin: 15px 0px 10px 132px;
+}
+
+::-webkit-scrollbar {
+display: none;
+}
+
+#rate-select{
+  width: 50%;
+  float: left;
+  margin-left: 16px;
+}
+
+.btn-warning{
+  float: right;
+  margin-right: 16px;
+}
+
+#submit{
+  margin: 10px 0px 10px 0px;
 }

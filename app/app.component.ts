@@ -6,7 +6,7 @@ import { Review } from './review.model';
   selector: 'my-app',
   template: `
   <div class="container">
-    <h1>Mega Review City -- The Party App for Party People</h1>
+    <h1>WinGroot</h1>
     <restaurant-list [childRestaurants] = 'allRestaurants' (clickSender)='showDetails($event)'
     (clickDelete) ="deleteRestaurant($event)"></restaurant-list>
     <restaurant-edit [childSelectedRestaurant]="selectedRestaurant" (doneClickedSender)="finishedEditing()"></restaurant-edit>
@@ -20,13 +20,16 @@ export class AppComponent {
   public  dominosReview: Review[] =[
     new Review(3,"eh",5),
     new Review(5,"amazing",14),
-    new Review(1,"enjoy your food poisoning",55)
+    new Review(1,"enjoy your food poisoning",55),
+    new Review(2,"Had better",25),
+    new Review(4,"I literally died from how awesome this meal was, I am typing this from beyond the grave",13)
   ]
   public allRestaurants: Restaurant[] = [
-    new Restaurant("McDonalds", "Fast Food", "10 Main Street", "1", []),
-    new Restaurant("Warscapia", "Fantasy Food", "Griffin Cloud", "3", []),
-    new Restaurant("Don Pedro", "Mexican", "5th and Washington", "1", []),
-    new Restaurant("Dominos", "Pizza", "Near PSU", "2", this.dominosReview)
+    new Restaurant("Dominos", "Pizza", "Near PSU", "$$", this.dominosReview),
+    new Restaurant("McDonalds", "Fast Food", "10 Main Street", "$", []),
+    new Restaurant("Warscapia", "Fantasy Food", "Griffin Cloud", "$$$", []),
+    new Restaurant("Don Pedro", "Mexican", "5th and Washington", "$", [])
+
   ];
   selectedRestaurant: Restaurant = null;
   showDetails(clickedRestaurant: Restaurant){

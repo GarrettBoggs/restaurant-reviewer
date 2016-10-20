@@ -8,14 +8,20 @@ import { Review } from './review.model';
     <h2>Add a Restaurant</h2>
     <div>
       <label>Name</label>
-      <input #newName>
+      <input class="form-control" #newName>
       <label>Cuisine</label>
-      <input #newType>
+      <input class="form-control" #newType>
       <label>Address</label>
-      <input #newAddress>
+      <input class="form-control" #newAddress>
       <label>Price</label>
-      <input type="number" max="5" min="1" #newPrice>
-      <button class="btn btn-primary" (click)="createRestaurantClick(newName.value,newType.value,newAddress.value,newPrice.value); newName.value=''; newType.value=''; newAddress.value=''; newPrice.value=''">Submit Restaurant</button>
+        <select class="form-control" #newPrice>
+          <option val="$">$</option>
+          <option val="$$">$$</option>
+          <option val="$$$">$$$</option>
+          <option val="$$$$">$$$$</option>
+          <option val="$$$$$">$$$$$</option>
+        </select>
+        <button class="btn btn-primary" id="submit" (click)="createRestaurantClick(newName.value,newType.value,newAddress.value,newPrice.value); newName.value=''; newType.value=''; newAddress.value=''">Submit Restaurant</button>
     </div>
 
   `

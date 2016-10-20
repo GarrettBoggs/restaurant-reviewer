@@ -18,6 +18,13 @@ import {Restaurant} from "./restaurant.model";
 
 export class ReviewListComponent{
   @Input() childReviewRestaurant: Restaurant;
+  showReviews(opaque:number){
+    if(null){
+      return 0;
+    }else{
+      return 1;
+    }
+  }
   deleteButtonClick(currentReview){
     var reviewsArray: Review[] = this.childReviewRestaurant.reviews;
     this.childReviewRestaurant.averageRating =0;
@@ -33,4 +40,7 @@ export class ReviewListComponent{
         this.childReviewRestaurant.averageRating = Math.round(this.childReviewRestaurant.averageRating*100)/100;
       this.childReviewRestaurant.averageWait = Math.floor(this.childReviewRestaurant.averageWait);
   }
+
+
+
 }

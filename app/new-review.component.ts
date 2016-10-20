@@ -10,15 +10,17 @@ import { Review } from "./review.model";
     <label>Wait Time</label>
     <input placeholder="Wait Time" type="number" class="form-control" required #xwaitTime>
     <label>Rating</label>
-    <select #xrating>
-      <option value='5'>5</option>
-      <option value='4'>4</option>
-      <option value='3'>3</option>
-      <option value='2'>2</option>
-      <option value='1'>1</option>
-    </select>
+    <div class="row">
+      <select #xrating id="rate-select" class="form-control">
+        <option value='5'>5</option>
+        <option value='4'>4</option>
+        <option value='3'>3</option>
+        <option value='2'>2</option>
+        <option value='1'>1</option>
+      </select>
 
-    <button class="btn btn-warning"(click)="reviewCreate(xrating.value, xdescription.value, xwaitTime.value); xrating.value=''; xdescription.value=''; xwaitTime.value=''; hideReview()"> UNLEASH YOUR FURY!!! </button>
+      <button class="btn btn-warning"(click)="reviewCreate(xrating.value, xdescription.value, xwaitTime.value); xrating.value=''; xdescription.value=''; xwaitTime.value=''; hideReview()"> UNLEASH YOUR FURY!!! </button>
+    </div>
   </div>
   `
 })

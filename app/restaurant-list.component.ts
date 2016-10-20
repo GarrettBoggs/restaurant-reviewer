@@ -15,30 +15,40 @@ import {Review} from './review.model';
   </select>
   <select (change)="priceChange($event.target.value)">
     <option value="0">All</option>
-    <option value="1">$</option>
-    <option value="2">$$</option>
-    <option value="3">$$$</option>
-    <option value="4">$$$$</option>
-    <option value="5">$$$$$</option>
+    <option value="$">$</option>
+    <option value="$$">$$</option>
+    <option value="$$$">$$$</option>
+    <option value="$$$$">$$$$</option>
+    <option value="$$$$$">$$$$$</option>
   </select>
 
-    <div *ngFor="let currentRestaurant of childRestaurants |specialty:selectedType | price:selectedPrice">
-      <h2>{{currentRestaurant.name}}</h2>
-      <h2>{{ currentRestaurant.averageRating ? 'Average Review: ' + currentRestaurant.averageRating  : 'No Reviews'}}</h2>
-      <h2>{{ currentRestaurant.averageWait ? 'Average Wait Time: ' +  currentRestaurant.averageWait + ' minutes' : 'No Wait Time Available'}}</h2>
-      <h3>{{currentRestaurant.type}}</h3>
-      <h4>{{currentRestaurant.address}}</h4>
-      <h5>Price Range: {{currentRestaurant.price}}</h5>
-      <list-reviews [childReviewRestaurant]="currentRestaurant" ></list-reviews>
-      <div *ngIf="currentRestaurant === selectedReview">
-        <new-review (newReviewSender)="(currentRestaurant.reviews).push($event)"
-        (removeInterfaceSender)="finishedReview(); updateAverages(currentRestaurant)"
-        ></new-review>
+
+  <div *ngFor="let currentRestaurant of childRestaurants |specialty:selectedType | price:selectedPrice">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>{{currentRestaurant.name}}</h2>
+        <h2>{{ currentRestaurant.averageRating ? 'Average Review: ' + currentRestaurant.averageRating  : 'No Reviews'}}</h2>
+        <h2>{{ currentRestaurant.averageWait ? 'Average Wait Time: ' +  currentRestaurant.averageWait + ' minutes' : 'No Wait Time Available'}}</h2>
+        <h3>{{currentRestaurant.type}}</h3>
+        <h4>{{currentRestaurant.address}}</h4>
+        <h5>Price Range: {{currentRestaurant.price}}</h5>
+        <button (click)="editButtonHasBeenClicked(currentRestaurant)" class="btn btn-info">Edit Restaurant</button>
+
+        <button class="btn btn-danger" (click)="deleteButtonClicked(currentRestaurant)">Delete Restaurant</button>
+        <div *ngIf="currentRestaurant === selectedReview">
+          <new-review (newReviewSender)="(currentRestaurant.reviews).push($event)"
+          (removeInterfaceSender)="finishedReview(); updateAverages(currentRestaurant)"
+          ></new-review>
+        </div>
       </div>
-      <button (click)="editButtonHasBeenClicked(currentRestaurant)" class="btn btn-info">Edit Restaurant</button>
-      <button (click)="reviewButtonClicked(currentRestaurant)" class="btn btn-primary">Add Review</button>
-      <button class="btn btn-danger" (click)="deleteButtonClicked(currentRestaurant)">Delete Restaurant</button>
+      <div class="col-sm-6" >
+        <list-reviews   [childReviewRestaurant]="currentRestaurant" ></list-reviews>
+        <button (click)="reviewButtonClicked(currentRestaurant)" class="btn btn-primary add-review">Add Review</button>
+      </div>
     </div>
+  </div>
+
+
 
   `
 })
