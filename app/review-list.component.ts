@@ -6,8 +6,8 @@ import {Restaurant} from "./restaurant.model";
   selector: 'list-reviews',
   template: `
   <div id=reviews>
-    <div *ngFor="let currentReview of childReviewRestaurant.reviews" >
-      <p>Review: {{currentReview.description}}</p>
+    <div *ngFor="let currentReview of childReviewRestaurant.reviews|rating" >
+      <p> {{currentReview.description}}</p>
       <li>Rating: {{currentReview.rating}}</li>
       <li>Wait: {{currentReview.waitTime}} minute(s)</li>
       <button (click)="deleteButtonClick(currentReview)" class="btn btn-danger">Delete Review</button>
@@ -18,14 +18,8 @@ import {Restaurant} from "./restaurant.model";
 
 export class ReviewListComponent{
   @Input() childReviewRestaurant: Restaurant;
-  showReviews(opaque:number){
-    if(null){
-      return 0;
-    }else{
-      return 1;
-    }
-  }
-  deleteButtonClick(currentReview){
+
+  deleteButtonClick(currentReview: Review){
     var reviewsArray: Review[] = this.childReviewRestaurant.reviews;
     this.childReviewRestaurant.averageRating =0;
     this.childReviewRestaurant.averageWait =0;

@@ -6,7 +6,7 @@ import { Review } from './review.model';
   selector: 'new-restaurant',
   template:`
     <h2>Add a Restaurant</h2>
-    <div>
+    <div id="new-restaurant">
       <label>Name</label>
       <input class="form-control" #newName>
       <label>Cuisine</label>

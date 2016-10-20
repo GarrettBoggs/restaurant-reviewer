@@ -1,23 +1,60 @@
-h1{
-color:blue;
+body{
+  background: no-repeat fixed url("http://www.walldevil.com/wallpapers/a91/batman-t-rex-dinosaur.jpg");
+  color: white;
+
 }
+
+input{
+    color:black;
+}
+
+li, p{
+  font-size: 18px;
+  text-shadow: 1px 1px gray;
+  color: black;
+}
+
 #reviewParent{
   overflow: hidden;
 }
+
 #reviews{
   overflow: scroll;
   height: 30vh;
   width: 30vh;
-  border-style: double;
-  padding: 3px 15px 3px 15px;
+  border-style: double black;
+  padding: 40px 15px 5px 25px;
   word-wrap: normal;
   border-radius: 50%;
   text-align: center;
+  box-shadow: 10px 10px 5px #888888;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color:  rgba(169,169,169, 0.9);
+}
 
+.restaurant-box{
+  border-style: groove;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgba(169,169,169, 0.7);
+  text-shadow: 1px 1px black;
+  border-radius: 10px;
 }
 
 .add-review{
   margin: 15px 0px 10px 132px;
+}
+
+.top-select{
+  width: 15%;
+  float: left;
+}
+
+#price-range{
+  margin-left: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -30,11 +67,15 @@ display: none;
   margin-left: 16px;
 }
 
-.btn-warning{
+.btn-warning, .btn-success{
   float: right;
   margin-right: 16px;
 }
 
 #submit{
   margin: 10px 0px 10px 0px;
+}
+
+#new-restaurant{
+  width: 50%;
 }

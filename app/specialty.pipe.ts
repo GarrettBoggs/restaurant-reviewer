@@ -13,6 +13,7 @@ export class SpecialtyPipe implements PipeTransform {
       return input;
     }
       for(var i = 0; i < input.length; i++){
+
         if(input[i].type === specialty){
           output.push(input[i]);
         }

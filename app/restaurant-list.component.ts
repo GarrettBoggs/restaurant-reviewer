@@ -5,27 +5,26 @@ import {Review} from './review.model';
 @Component({
   selector: 'restaurant-list',
   template:
-  `<label>Type of Restaurant</label>
-  <select (change)="typeChange($event.target.value)">
-    <option value="all">All</option>
-    <option value="Fantasy Food">Fantasy</option>
-    <option value="Fast Food">Fast</option>
-    <option value="Mexican">Mexican</option>
-    <option value="Pizza">Pizza</option>
-  </select>
-  <select (change)="priceChange($event.target.value)">
-    <option value="0">All</option>
-    <option value="$">$</option>
-    <option value="$$">$$</option>
-    <option value="$$$">$$$</option>
-    <option value="$$$$">$$$$</option>
-    <option value="$$$$$">$$$$$</option>
-  </select>
+  `
+  <div class="row">
+    <select  class="form-control top-select" (change)="typeChange($event.target.value)">
+        <option value="all">Show All Cuisines</option>
+        <option *ngFor="let currentRestaurant of childRestaurants" value="{{currentRestaurant.type}}">{{currentRestaurant.type}}</option>
+    </select>
+    <select  id="price-range" class="form-control top-select" (change)="priceChange($event.target.value)">
+      <option value="0">Show All Price Ranges</option>
+      <option value="$">$</option>
+      <option value="$$">$$</option>
+      <option value="$$$">$$$</option>
+      <option value="$$$$">$$$$</option>
+      <option value="$$$$$">$$$$$</option>
+    </select>
+  </div>
 
 
   <div *ngFor="let currentRestaurant of childRestaurants |specialty:selectedType | price:selectedPrice">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 restaurant-box">
         <h2>{{currentRestaurant.name}}</h2>
         <h2>{{ currentRestaurant.averageRating ? 'Average Review: ' + currentRestaurant.averageRating  : 'No Reviews'}}</h2>
         <h2>{{ currentRestaurant.averageWait ? 'Average Wait Time: ' +  currentRestaurant.averageWait + ' minutes' : 'No Wait Time Available'}}</h2>
@@ -40,41 +39,43 @@ import {Review} from './review.model';
           (removeInterfaceSender)="finishedReview(); updateAverages(currentRestaurant)"
           ></new-review>
         </div>
+        <div *ngIf="currentRestaurant===selectedRestaurant">
+          <restaurant-edit [childSelectedRestaurant]="selectedRestaurant" (doneClickedSender)="finishedEditing()"></restaurant-edit>
+        </div>
       </div>
       <div class="col-sm-6" >
         <list-reviews   [childReviewRestaurant]="currentRestaurant" ></list-reviews>
-        <button (click)="reviewButtonClicked(currentRestaurant)" class="btn btn-primary add-review">Add Review</button>
+        <button (click)="reviewButtonClicked(currentRestaurant) " class="btn btn-primary add-review">Add Review</button>
       </div>
     </div>
   </div>
-
-
-
   `
 })
-// add review button here as well
+
 
 
 export class RestaurantList{
   @Input() childRestaurants: Restaurant[];
   @Output() clickSender = new EventEmitter();
-  editButtonHasBeenClicked(resToEdit: Restaurant){
-    this.clickSender.emit(resToEdit);
-  }
-
   @Output() clickDelete = new EventEmitter();
   deleteButtonClicked(chosenRestaurant: Restaurant){
     this.clickDelete.emit(chosenRestaurant);
   }
 
+  public selectedRestaurant = null;
   public selectedReview = null;
+  public selectedType: string= "all";
+  public selectedPrice: string = "0";
+
+  editButtonHasBeenClicked(resToEdit: Restaurant){
+    this.selectedRestaurant = resToEdit;
+  }
+
+
 
   reviewButtonClicked(clickedRestaurant: Restaurant){
     this.selectedReview = clickedRestaurant;
   }
-
-  public selectedType: string= "all";
-  public selectedPrice: string = "0";
 
   updateAverages(curRestaurant:Restaurant){
     curRestaurant.averageRating=0;
@@ -104,6 +105,10 @@ export class RestaurantList{
   finishedReview(){
     this.selectedReview=null;
 
+  }
+
+  finishedEditing(){
+    this.selectedRestaurant = null;
   }
 
 }
