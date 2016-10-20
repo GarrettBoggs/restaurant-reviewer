@@ -1,3 +1,9 @@
 h1{
 color:blue;
 }
+
+#reviews{
+  overflow: auto;
+  height: 20vh;
+  width: 20vh;
+}

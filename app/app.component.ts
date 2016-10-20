@@ -6,7 +6,7 @@ import { Review } from './review.model';
   selector: 'my-app',
   template: `
   <div class="container">
-    <h1>My First Angular 2 App</h1>
+    <h1>Mega Review City -- The Party App for Party People</h1>
     <restaurant-list [childRestaurants] = 'allRestaurants' (clickSender)='showDetails($event)'
     (clickDelete) ="deleteRestaurant($event)"></restaurant-list>
     <restaurant-edit [childSelectedRestaurant]="selectedRestaurant" (doneClickedSender)="finishedEditing()"></restaurant-edit>

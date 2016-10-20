@@ -14,7 +14,7 @@ import { Review } from './review.model';
       <label>Address</label>
       <input #newAddress>
       <label>Price</label>
-      <input #newPrice>
+      <input type="number" max="5" min="1" #newPrice>
       <button class="btn btn-primary" (click)="createRestaurantClick(newName.value,newType.value,newAddress.value,newPrice.value); newName.value=''; newType.value=''; newAddress.value=''; newPrice.value=''">Submit Restaurant</button>
     </div>
 
@@ -24,7 +24,7 @@ import { Review } from './review.model';
 export class NewRestaurantComponent{
   @Output() newRestaurantSender = new EventEmitter();
   createRestaurantClick(name:string,type:string,address:string,price:string){
-    var newRestaurant: Restaurant = new Restaurant(name,type,address,price,[new Review(1,"supfool",5)]);
+    var newRestaurant: Restaurant = new Restaurant(name,type,address,price,[]);
     this.newRestaurantSender.emit(newRestaurant);
   }
 

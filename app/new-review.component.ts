@@ -5,8 +5,11 @@ import { Review } from "./review.model";
   selector: 'new-review',
   template: `
   <div>
-    <input #xdescription>
-    <input #xwaitTime>
+    <label>Description</label>
+    <input type="text"  class="form-control" placeholder="Description" #xdescription required>
+    <label>Wait Time</label>
+    <input placeholder="Wait Time" type="number" class="form-control" required #xwaitTime>
+    <label>Rating</label>
     <select #xrating>
       <option value='5'>5</option>
       <option value='4'>4</option>
@@ -29,6 +32,7 @@ export class NewReviewComponent{
 
     var newReview: Review = new Review(numRating, newDescription, numWaitTime);
     this.newReviewSender.emit(newReview);
+
   }
 
   hideReview(){
