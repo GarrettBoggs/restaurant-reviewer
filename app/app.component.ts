@@ -6,7 +6,9 @@ import { Review } from './review.model';
   selector: 'my-app',
   template: `
   <div class="container">
-    <h1>Bat-Dino Foodie Guide</h1>
+    <div class="jumbotron">
+      <h1>Bat-Dino Foodie Guide</h1>
+    </div>
     <restaurant-list [childRestaurants] = 'allRestaurants'
     (clickDelete) ="deleteRestaurant($event)"></restaurant-list>
     <new-restaurant
